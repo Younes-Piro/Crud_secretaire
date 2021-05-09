@@ -51,7 +51,7 @@
             <div class="card-footer d-flex flex-row mb-2">
                 <p class="pt-3">Insérer un nouveau client :</p>
                 <div class="ms-auto p-2">
-                    <a href="/client/create" class="btn btn-outline-dark btn-light" style="text-align:right">Insérer</a>
+                    <a href="{{route('client.create')}}" class="btn btn-outline-dark btn-light" style="text-align:right">Insérer</a>
                 </div>  
             </div>
         </div>

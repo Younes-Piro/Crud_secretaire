@@ -41,7 +41,6 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-    
         $client = Client::create([
             'name' => $request->input('name'),
             'age'  => $request->input('age'),

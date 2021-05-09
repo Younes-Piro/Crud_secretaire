@@ -9,7 +9,7 @@ return [
         /**
          * Due date for payment since invoice's date.
          */
-        'pay_until_days' => 7,
+        'pay_until_days' => 14,
     ],
 
     'serial_number' => [

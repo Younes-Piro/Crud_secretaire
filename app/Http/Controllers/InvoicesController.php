@@ -21,6 +21,7 @@ class InvoicesController extends Controller
         ]);
     }
     public function test(Request $request){
+        //dd($request);
 
         $id=$request->input('client');
 
@@ -30,7 +31,24 @@ class InvoicesController extends Controller
         $age= $client->age;
 
         $idService[]=$request->input('service');
-        foreach( $idService as $id){
+        $quantite[]=$request->input('quantite');
+        $remise[]=$request->input('reduction');
+        for($i=0;$i<count($idService);$i++){
+            $services = Services::find($idService[$i]);
+            $quantites = $quantite[$i];
+            $remises = $remise[$i];
+            for($j=0;$j<count($quantites);$j++){
+                $quantite = $quantites[$j];
+                $service = $services[$j];
+                $remise = $remises[$j];    
+                    $nameService = $service->name;
+                    $price = $service->price;
+                    $item=(new InvoiceItem())->title($nameService)->pricePerUnit($price)->quantity($quantite)->discount($remise);
+                    $items[]=$item;
+            }
+        }
+
+        /*foreach( $idService as $id){
             $services = Services::find($id);
             foreach ($services as $service){
                 $nameService = $service->name;
@@ -38,8 +56,8 @@ class InvoicesController extends Controller
                 $item=(new InvoiceItem())->title($nameService)->pricePerUnit($price);
                 $items[]=$item;
             }
-        }
-        
+        }*/
+        $tva = $request->input('TVA');
        
         
         $client = new Party([
@@ -60,16 +78,18 @@ class InvoicesController extends Controller
             ],
         ]);
         
+        
 
         $invoice = Invoice::make()
             ->buyer($customer)
             ->seller($client)
             ->name("Facture") //nom de la facture
             //->discountByPercent(10) //reduction
-            //->taxRate(15) //tva
-            //->shipping(1.99) //price of a 
+            ->taxRate($tva) //tva 
+            //->shipping(1.99) //price of ship
             ->currencySymbol('MAD')
             ->currencyCode('DRH')
+            
             ->addItems($items);
 
         return $invoice->stream();
