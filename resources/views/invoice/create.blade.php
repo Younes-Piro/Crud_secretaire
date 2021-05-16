@@ -43,9 +43,8 @@ $(document).ready(function() {
                     <h1>Creer votre facture</h1>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('invoice')}}" id="myForm" method="POST">
+                    <form action="{{route('invoice.store')}}" id="myForm" method="POST">
                         @csrf
-                        @method('GET')
                         <div id="menuSelect">
                             <div class="row">
                                 <div class="col">
@@ -58,11 +57,13 @@ $(document).ready(function() {
                                 </div>
                                 <div class="col">
                                     <label for="TVA">TVA</label>
-                                    <input type="text" name="TVA" class="form-control" id="TVA" placeholder="ENTRER VOTRE TVA..." required>
+                                    <input type="text" name="TVA" class="form-control" value="15" id="TVA" placeholder="ENTRER VOTRE TVA..." required>
                                 </div>
                             </div>
-                            
-                            
+                            <div>
+                                <label for="date" class="mt-2">Date de facture:</label>
+                                <input type="date" name="date" class="form-control " id="date" >
+                            </div>
                             <div class="col-md-9 m-auto">
                                 <table class="table mt-3" id="myTab">
                                     <thead class="thead-dark">

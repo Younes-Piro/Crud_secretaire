@@ -15,4 +15,11 @@ class Client extends Model
         'adresse',
         'sexe'
     ];
+
+    public function Paiement(){
+        return $this->hasMany(Paiement::class);
+    }
+    public function Invoice(){
+        return $this->hasMany(Invoice::class);
+    }
 }

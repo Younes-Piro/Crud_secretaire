@@ -45,7 +45,10 @@
                     <a class="nav-link" href="{{route('client.index')}}">Client</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{route('facture')}}">facture <span class="sr-only"></span></a>
+                    <a class="nav-link" href="{{route('paiement.index')}}">Paiement <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{route('invoice.index')}}">facture <span class="sr-only"></span></a>
                 </li>
             </ul>
         </div>

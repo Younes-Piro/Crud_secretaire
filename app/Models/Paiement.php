@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Services extends Model
+class Paiement extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'name',
-        'price',
-        'reference'
+        'date_paiement',
+        'type_paiement',
+        'client_id'
     ];
-    public function InvoiceLine(){
-        return $this->hasMany(InvoiceLine::class);
+
+    public function Client(){
+        return $this->belongsTo(Client::class);
     }
 }
